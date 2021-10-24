@@ -1,0 +1,101 @@
+
+{% extends 'base.html'%}
+
+
+{% block mystyle %}
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 57px;
+            
+        }
+        .myform{
+            border: 2px solid rgb(17, 16, 16);
+            padding: 15px 15px;
+            box-shadow:8px 13px 13px bisque;
+        }
+        
+        .input-field{
+            margin: 5px;
+        }
+
+        form{
+            font-size:x-large;
+            margin: 20px;
+
+        }
+
+        input[type=text],input[type=password]{
+            padding: 8px;
+            
+        }
+
+        input[type=submit]{
+            padding: 6px 88px;
+            margin: 24px 9px;
+            border-radius: 8px;
+            color:white;
+            background-color:  #17a2b8;
+        }
+        
+        input[type=submit]:hover{
+            cursor: pointer;
+            background-color: #085f6d;
+        }
+
+        h1{
+            text-align: center;
+        }
+        
+        .link{
+            font-size: small;
+            padding: 5px;
+        }
+
+{% endblock %}
+
+{% block body %}
+
+    {% for msg in messages %}
+        <h1 style="color: red;">{{msg}}</h1>
+    {% endfor %}
+
+    <div class="container">
+
+        
+        
+        <h1>Login Here</h1>
+        <div class="myform">
+            
+            <form action="" method="POST">  {% csrf_token %}
+                <div class="input-field">
+                    <label for="uname">UserName</label><br>
+                    <i class="uil uil-user" style="border:2px solid black;" ></i>
+                    <input type="text" name="uname" id="uname">
+                </div>
+                
+                <div class="input-field">
+                    <label for="pwd">Password&nbsp;</label><br>
+                    <i class="uil uil-key-skeleton-alt" style="border:2px solid black; padding-bottom: 6px;"></i>
+                    <input type="password" name="pwd" id="pwd">
+                </div>
+                
+                <div>
+                    <input type="submit" value="Login">
+                </div>
+                
+                <div class="link">
+                    <a href="#">Forget password</a>
+                </div>
+                <div class="link">
+                    <a href="{% url 'register' %}">New User?</a>
+                </div>
+                
+            </form>
+            
+        </div>
+    </div>
+
+{% endblock %}

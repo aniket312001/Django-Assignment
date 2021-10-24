@@ -1,0 +1,49 @@
+
+{% extends 'base.html'%}
+
+
+{% block mystyle %}
+        .container{
+            display: flex;
+            flex-direction: column;
+            margin: 15px;
+            justify-content: center;
+            align-items: center;
+            font-size: x-large;
+        }
+{% endblock %}
+
+{% block body %}
+    </style>
+    {% if user.is_authenticated %}
+    <h1 style="display: inline;">Welcome {{user.username}} Do you want add Product?</h1>
+    <a href="{% url 'newproduct' pk=user.username %}">click here</a>
+    {% endif %}
+    <div class="container">
+      
+        <h1>Here is the list of product avilable</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>weight</th>
+                    <th>price</th>
+                <th>create_at</th>
+                <th>update_at</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in products reversed %}
+            <tr>
+                    <td>{{i.name}}</td>
+                    <td>{{i.weight}}</td>
+                    <td>{{i.price}}</td>
+                    <td>{{i.create_at}}</td>
+                    <td>{{i.update_at}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

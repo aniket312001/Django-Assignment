@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <style>
+        .header{
+            height: auto;
+            position:sticky;
+            top: 2px;
+            z-index: 6;
+        }
+        .navbar{
+            display: flex;
+            background-color: black;
+            flex-wrap:wrap;
+            /* color: white; */
+            height: auto;
+            
+        }
+
+        .navbar li{
+            padding: 5px;
+            margin: 5px;
+            list-style-type: none;
+            font-size: 35px;
+        }
+
+        .navbar li a{
+            text-decoration: none;
+            color: rgb(228, 218, 218);
+        }
+
+        .navbar li a:hover{
+            color: white;
+        }
+
+        #item4{
+            margin-left: 67%;
+            /* background-color: rgb(243, 237, 237); */
+        }
+
+
+        {% block mystyle %}{% endblock %}
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <ul class="navbar">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'index' %}">Product</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'newpost' pk=user.username %}">Post</a></li>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <li ><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li ><a href="{% url 'login' %}">Login</a></li>
+                <li ><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+    </div>
+
+
+    {% block body %}{% endblock %}
+</body>
+</html>

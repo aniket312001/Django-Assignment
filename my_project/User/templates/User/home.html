@@ -1,0 +1,43 @@
+
+{% extends 'base.html'%}
+
+
+{% block mystyle %}
+
+    .container{
+    
+        <!-- background:url("https://source.unsplash.com/user/erondu/1600x900");
+        opacity:0.9; -->
+       
+        
+    }
+
+    .mypost{
+        
+        margin: 30px 50px;
+        padding: 5px 15px;
+        background-color: rgb(243, 237, 237);
+    }
+{% endblock %}
+
+{% block body  %}
+
+        
+
+    <div class="container">
+        
+    {% if user.is_authenticated %}
+    <h1 style="display: inline; padding-left:15px;">Welcome {{user.username}} Do you want to post ?</h1>
+    <a href="{% url 'newpost' pk=user.username %}">new post</a>
+    {% endif %}
+        {% for i in post reversed %}
+            <div class="mypost">
+                <h3>{{i.title}}</h3>
+                <h5>At - {{i.create_at}}</h5>
+                {{i.text}}
+                <h5 >By - <span style="color: red;">{{i.user.username}}</span></h5>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
